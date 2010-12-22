@@ -2,7 +2,7 @@ package net.m14m.katas.messaging;
 
 import org.junit.*;
 
-import java.io.StringWriter;
+import java.io.*;
 
 import static org.junit.Assert.*;
 
@@ -22,6 +22,18 @@ public class EndToEndTest {
                 "To: joe@example.com\n" +
                 "\n" +
                 "Hi there!\n" +
+                "\n" +
+                "disconnect\n");
+        consoleShouldReceive(NO_OUTPUT);
+    }
+
+    @Ignore @Test public void sendAnEmail_AnotherExample() {
+        Main.main("sally@example.com", "Greetings.\nHow's it going?");
+        networkShouldReceive("connect smtp\n" +
+                "To: sally@example.com\n" +
+                "\n" +
+                "Greetings.\n" +
+                "How's it going?\n" +
                 "\n" +
                 "disconnect\n");
         consoleShouldReceive(NO_OUTPUT);
@@ -53,11 +65,29 @@ public class EndToEndTest {
         consoleShouldReceive(NO_OUTPUT);
     }
 
+    @Ignore @Test public void handleErrorsGracefully() {
+        Main.setNetwork(new BadNetworkConnection());
+        Main.main("joe@example.com", "Hi there!");
+        consoleShouldReceive("Connection error. Please try again.");
+    }
+
     private void networkShouldReceive(String output) {
         assertEquals(output, network.toString());
     }
 
     private void consoleShouldReceive(String output) {
         assertEquals(output, console.toString());
+    }
+
+    private static class BadNetworkConnection extends Writer {
+        @Override public void write(char[] cbuf, int off, int len) throws IOException {
+            throw new IOException("Oh no the network is down!!!!!!!111one");
+        }
+
+        @Override public void flush() throws IOException {
+        }
+
+        @Override public void close() throws IOException {
+        }
     }
 }
