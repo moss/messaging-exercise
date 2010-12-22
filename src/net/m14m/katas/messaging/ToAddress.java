@@ -9,17 +9,11 @@ public class ToAddress {
         this.address = address;
     }
 
-    public void writeHeader(PrintWriter network) {
-        network.println("To: " + address);
+    public boolean isValid() {
+        return address.contains("@");
     }
 
-    public void send(Body body, PrintWriter network) {
-        if (!address.contains("@")) return;
-        network.println("connect smtp");
-        writeHeader(network);
-        network.println();
-        body.writeTo(network);
-        network.println();
-        network.println("disconnect");
+    public void writeHeader(PrintWriter network) {
+        network.println("To: " + address);
     }
 }

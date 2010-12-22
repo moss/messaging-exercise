@@ -1,15 +1,13 @@
 package net.m14m.katas.messaging;
 
-import java.io.PrintWriter;
-
 public class Application {
-    private final PrintWriter network;
+    private Mailer mailer;
 
-    public Application(PrintWriter network) {
-        this.network = network;
+    public Application(Mailer mailer) {
+        this.mailer = mailer;
     }
 
     public void send(Email email) {
-        email.send(network);
+        email.send(mailer);
     }
 }

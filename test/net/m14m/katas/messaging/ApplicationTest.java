@@ -12,7 +12,8 @@ public class ApplicationTest {
 
     @Before public void setUp() throws Exception {
         network = new StringWriter();
-        application = new Application(new PrintWriter(network));
+        final PrintWriter network1 = new PrintWriter(network);
+        application = new Application(new Mailer(network1));
     }
 
     @Test public void sendsTheEmailOutToTheNetwork() {

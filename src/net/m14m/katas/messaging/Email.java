@@ -1,7 +1,5 @@
 package net.m14m.katas.messaging;
 
-import java.io.PrintWriter;
-
 public class Email {
     private ToAddress to;
     private Body body;
@@ -11,7 +9,8 @@ public class Email {
         this.body = body;
     }
 
-    public void send(PrintWriter network) {
-        to.send(body, network);
+    public void send(Mailer mailer) {
+        if (!to.isValid()) return;
+        mailer.send(to, body);
     }
 }

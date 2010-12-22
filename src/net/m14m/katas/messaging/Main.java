@@ -18,6 +18,6 @@ public class Main {
         ToAddress to = new ToAddress(args[0]);
         Body body = new Body(args[1]);
         Email email = new Email(to, body);
-        new Application(network).send(email);
+        new Application(new Mailer(network)).send(email);
     }
 }
