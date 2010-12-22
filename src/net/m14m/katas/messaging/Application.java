@@ -9,7 +9,7 @@ public class Application {
         this.network = network;
     }
 
-    public void sendEmail(ToAddress to, Body body) {
-        new Email(to, body).send(network);
+    public void send(Email email) {
+        email.send(network);
     }
 }

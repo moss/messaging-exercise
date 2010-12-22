@@ -12,4 +12,14 @@ public class ToAddress {
     public void writeHeader(PrintWriter network) {
         network.println("To: " + address);
     }
+
+    public void send(Body body, PrintWriter network) {
+        if (!address.contains("@")) return;
+        network.println("connect smtp");
+        writeHeader(network);
+        network.println();
+        body.writeTo(network);
+        network.println();
+        network.println("disconnect");
+    }
 }

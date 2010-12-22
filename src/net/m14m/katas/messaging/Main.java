@@ -17,6 +17,7 @@ public class Main {
     public static void main(String... args) {
         ToAddress to = new ToAddress(args[0]);
         Body body = new Body(args[1]);
-        new Application(network).sendEmail(to, body);
+        Email email = new Email(to, body);
+        new Application(network).send(email);
     }
 }
