@@ -45,6 +45,12 @@ public class EndToEndTest {
         consoleShouldReceive("Invalid email address: no at sign");
     }
 
+    @Ignore @Test public void showAnErrorAndDoNotSendIfTheBodyIsInvalid() {
+        Main.main("dinah@example.com", "");
+        networkShouldReceive(NO_OUTPUT);
+        consoleShouldReceive("Cannot send an email with no body.");
+    }
+
     @Ignore @Test public void sendAnEmailToMultipleAddresses() {
         Main.main("sally@example.com,joe@example.com", "Hi everyone!");
         networkShouldReceive("connect smtp\n" +
