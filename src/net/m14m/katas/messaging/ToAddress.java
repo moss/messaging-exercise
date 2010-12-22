@@ -12,8 +12,4 @@ public class ToAddress {
     public void writeHeader(PrintWriter network) {
         network.println("To: " + address);
     }
-
-    public boolean invalid() {
-        return !address.contains("@");
-    }
 }

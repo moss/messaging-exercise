@@ -12,7 +12,6 @@ public class Email {
     }
 
     public void send(PrintWriter network) {
-        if (to.invalid()) return;
         network.println("connect smtp");
         to.writeHeader(network);
         network.println();
