@@ -9,11 +9,11 @@ public class ToAddress {
         this.address = address;
     }
 
-    public boolean isValid() {
-        return address.contains("@");
-    }
-
     public void writeHeader(PrintWriter network) {
         network.println("To: " + address);
+    }
+
+    public void reportProblems(ErrorHandler handler) {
+        if (!address.contains("@")) handler.error();
     }
 }

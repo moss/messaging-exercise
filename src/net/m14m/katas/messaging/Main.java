@@ -4,20 +4,21 @@ import java.io.*;
 
 public class Main {
     private static PrintWriter network;
-    private static Writer console;
+    private static PrintWriter console;
 
     public static void setNetwork(Writer network) {
         Main.network = new PrintWriter(network);
     }
 
     public static void setConsole(Writer console) {
-        Main.console = console;
+        Main.console = new PrintWriter(console);
     }
 
     public static void main(String... args) {
         ToAddress to = new ToAddress(args[0]);
         Body body = new Body(args[1]);
-        Email email = new Email(to, body);
-        new Application(new Mailer(network)).send(email);
+        SmtpMailer mailer = new SmtpMailer(network);
+        ValidatingMailer validatingMailer = new ValidatingMailer(mailer, console);
+        validatingMailer.send(to, body);
     }
 }
