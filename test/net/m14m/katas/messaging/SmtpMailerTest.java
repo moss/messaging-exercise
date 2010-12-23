@@ -6,7 +6,7 @@ import java.io.*;
 
 import static org.junit.Assert.*;
 
-public class SmtMailerTest {
+public class SmtpMailerTest {
     private StringWriter network;
     private SmtpMailer mailer;
 
