@@ -14,6 +14,6 @@ public class ToAddress {
     }
 
     public void reportProblems(ErrorHandler handler) {
-        if (!address.contains("@")) handler.error();
+        if (!address.contains("@")) handler.error(new Error("Invalid email address: " + address));
     }
 }

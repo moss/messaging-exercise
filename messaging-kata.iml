@@ -17,7 +17,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="TEST" name="Mockito" level="application" />
+    <orderEntry type="library" name="Mockito" level="application" />
   </component>
 </module>
 

@@ -16,9 +16,9 @@ public class ValidatingMailer implements Mailer, ErrorHandler {
         mailer.send(to, body);
     }
 
-    public void error() {
+    public void error(Error error) {
         this.mailer = new NoOpMailer();
-        console.println("Invalid email address: no at sign");
+        error.writeTo(console);
     }
 
     private static class NoOpMailer implements Mailer {

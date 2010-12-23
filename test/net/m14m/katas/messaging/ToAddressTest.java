@@ -1,35 +1,24 @@
 package net.m14m.katas.messaging;
 
 import org.junit.*;
+import org.junit.runner.*;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ToAddressTest {
-    private ErrorHandlerSpy handler = new ErrorHandlerSpy();
+    @Mock
+    private ErrorHandler handler;
 
     @Test public void validIfItHasAnAtSign() {
         new ToAddress("joe@example.com").reportProblems(handler);
-        handler.shouldBeValid();
+        verify(handler, never()).error(any(Error.class));
     }
 
     @Test public void invalidIfItHasNoAtSign() {
-        new ToAddress("!").reportProblems(handler);
-        handler.shouldBeInvalid();
-    }
-
-    private static class ErrorHandlerSpy implements ErrorHandler {
-        private boolean valid = true;
-
-        public void error() {
-            valid = false;
-        }
-
-        private void shouldBeValid() {
-            assertTrue(valid);
-        }
-
-        private void shouldBeInvalid() {
-            assertFalse(valid);
-        }
+        new ToAddress("!123").reportProblems(handler);
+        verify(handler).error(refEq(new Error("Invalid email address: !123")));
     }
 }

@@ -1,5 +1,5 @@
 package net.m14m.katas.messaging;
 
-interface ErrorHandler {
-    void error();
+public interface ErrorHandler {
+    void error(Error error);
 }

@@ -76,6 +76,9 @@
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="org.mockito.Mock" />
+    </list>
   </component>
   <component name="FacetStructureConfigurable.UI">
     <splitter-proportions>
@@ -235,11 +238,6 @@
         <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
       </item>
     </group>
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state />
-    </entry>
   </component>
   <component name="ProjectKey">
     <option name="state" value="project://default" />
