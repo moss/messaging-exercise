@@ -13,6 +13,7 @@ public class ValidatingMailer implements Mailer, ErrorHandler {
 
     public void send(ToAddress to, Body body) {
         to.reportProblems(this);
+        body.reportProblems(this);
         mailer.send(to, body);
     }
 

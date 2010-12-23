@@ -12,4 +12,8 @@ public class Body {
     public void writeTo(PrintWriter network) {
         network.println(body);
     }
+
+    public void reportProblems(ErrorHandler handler) {
+        if (body.isEmpty()) handler.error(new Error("Cannot send an email with no body."));
+    }
 }
