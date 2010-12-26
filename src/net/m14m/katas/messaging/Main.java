@@ -15,7 +15,7 @@ public class Main {
     }
 
     public static void main(String... args) {
-        ToAddress to = new ToAddress(args[0]);
+        ToAddressBlock to = ToAddressBlock.parseCommaSeparated(args[0]);
         Body body = new Body(args[1]);
         SmtpMailer mailer = new SmtpMailer(network);
         ValidatingMailer validatingMailer = new ValidatingMailer(mailer, console);

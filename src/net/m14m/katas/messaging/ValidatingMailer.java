@@ -11,7 +11,7 @@ public class ValidatingMailer implements Mailer, ErrorHandler {
         this.console = console;
     }
 
-    public void send(ToAddress to, Body body) {
+    public void send(ToAddressBlock to, Body body) {
         to.reportProblems(this);
         body.reportProblems(this);
         mailer.send(to, body);
@@ -23,7 +23,7 @@ public class ValidatingMailer implements Mailer, ErrorHandler {
     }
 
     private static class NoOpMailer implements Mailer {
-        public void send(ToAddress to, Body body) {
+        public void send(ToAddressBlock to, Body body) {
         }
     }
 }

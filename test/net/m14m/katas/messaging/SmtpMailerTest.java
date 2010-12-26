@@ -16,7 +16,7 @@ public class SmtpMailerTest {
     }
 
     @Test public void sendsTheEmailOutToTheNetwork() {
-        mailer.send(new ToAddress("joe@example.com"), new Body("Hi there!"));
+        mailer.send(ToAddressBlock.parseCommaSeparated("joe@example.com"), new Body("Hi there!"));
         assertEquals("connect smtp\n" +
                 "To: joe@example.com\n" +
                 "\n" +

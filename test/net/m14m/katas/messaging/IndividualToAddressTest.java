@@ -8,17 +8,17 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ToAddressTest {
+public class IndividualToAddressTest {
     @Mock
     private ErrorHandler handler;
 
     @Test public void validIfItHasAnAtSign() {
-        new ToAddress("joe@example.com").reportProblems(handler);
+        new IndividualToAddress("joe@example.com").reportProblems(handler);
         verify(handler, never()).error(any(Error.class));
     }
 
     @Test public void invalidIfItHasNoAtSign() {
-        new ToAddress("!123").reportProblems(handler);
+        new IndividualToAddress("!123").reportProblems(handler);
         verify(handler).error(refEq(new Error("Invalid email address: !123")));
     }
 }

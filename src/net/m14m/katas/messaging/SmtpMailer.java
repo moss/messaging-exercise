@@ -9,7 +9,7 @@ public class SmtpMailer implements Mailer {
         this.network = network;
     }
 
-    public void send(ToAddress to, Body body) {
+    public void send(ToAddressBlock to, Body body) {
         network.println("connect smtp");
         to.writeHeader(network);
         network.println();

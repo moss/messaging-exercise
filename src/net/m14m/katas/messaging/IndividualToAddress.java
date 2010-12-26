@@ -2,10 +2,10 @@ package net.m14m.katas.messaging;
 
 import java.io.PrintWriter;
 
-public class ToAddress {
+public class IndividualToAddress {
     private final String address;
 
-    public ToAddress(String address) {
+    public IndividualToAddress(String address) {
         this.address = address;
     }
 

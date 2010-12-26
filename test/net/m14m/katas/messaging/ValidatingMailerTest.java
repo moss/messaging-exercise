@@ -12,9 +12,11 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ValidatingMailerTest {
-    private static final ToAddress ADDRESS = new ToAddress("joe@example.com");
+    private static final ToAddressBlock ADDRESS = ToAddressBlock
+            .parseCommaSeparated("joe@example.com");
     private static final Body BODY = new Body("Hi there!");
-    private static final ToAddress INVALID_ADDRESS = new ToAddress("not valid");
+    private static final ToAddressBlock INVALID_ADDRESS = ToAddressBlock
+            .parseCommaSeparated("not valid");
     private static final Body INVALID_BODY = new Body("");
     @Mock
     private Mailer mailer;
@@ -32,13 +34,13 @@ public class ValidatingMailerTest {
 
     @Test public void shouldValidateToAddress() {
         validatingMailer.send(INVALID_ADDRESS, BODY);
-        verify(mailer, never()).send(any(ToAddress.class), any(Body.class));
+        verify(mailer, never()).send(any(ToAddressBlock.class), any(Body.class));
         assertReportedAnError();
     }
 
     @Test public void shouldValidateBody() {
         validatingMailer.send(ADDRESS, INVALID_BODY);
-        verify(mailer, never()).send(any(ToAddress.class), any(Body.class));
+        verify(mailer, never()).send(any(ToAddressBlock.class), any(Body.class));
         assertReportedAnError();
     }
 
