@@ -1,6 +1,5 @@
 package net.m14m.katas.messaging.mailer;
 
-import net.m14m.katas.messaging.Error;
 import net.m14m.katas.messaging.*;
 import net.m14m.katas.messaging.message.*;
 
@@ -21,7 +20,7 @@ public class ValidatingMailer implements Mailer, ErrorHandler {
         mailer.send(to, body);
     }
 
-    public void error(Error error) {
+    public void error(ValidationError error) {
         this.mailer = new NoOpMailer();
         error.writeTo(console);
     }

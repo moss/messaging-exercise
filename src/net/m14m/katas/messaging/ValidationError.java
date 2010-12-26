@@ -2,10 +2,10 @@ package net.m14m.katas.messaging;
 
 import java.io.PrintWriter;
 
-public class Error {
+public class ValidationError {
     private final String message;
 
-    public Error(String message) {
+    public ValidationError(String message) {
         this.message = message;
     }
 

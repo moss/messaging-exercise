@@ -1,6 +1,6 @@
 package net.m14m.katas.messaging.message;
 
-import net.m14m.katas.messaging.ErrorHandler;
+import net.m14m.katas.messaging.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.Mock;
@@ -27,6 +27,6 @@ public class ToAddressBlockTest {
     @Test public void shouldReportAllErrors() {
         ToAddressBlock block = parseCommaSeparated("bad address,ok@example.com,other bad address");
         block.reportProblems(errorHandler);
-        verify(errorHandler, times(2)).error(any(net.m14m.katas.messaging.Error.class));
+        verify(errorHandler, times(2)).error(any(ValidationError.class));
     }
 }

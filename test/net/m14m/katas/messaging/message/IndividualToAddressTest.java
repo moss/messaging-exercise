@@ -1,6 +1,5 @@
 package net.m14m.katas.messaging.message;
 
-import net.m14m.katas.messaging.Error;
 import net.m14m.katas.messaging.*;
 import org.junit.*;
 import org.junit.runner.*;
@@ -16,11 +15,11 @@ public class IndividualToAddressTest {
 
     @Test public void validIfItHasAnAtSign() {
         new IndividualToAddress("joe@example.com").reportProblems(handler);
-        verify(handler, never()).error(any(net.m14m.katas.messaging.Error.class));
+        verify(handler, never()).error(any(ValidationError.class));
     }
 
     @Test public void invalidIfItHasNoAtSign() {
         new IndividualToAddress("!123").reportProblems(handler);
-        verify(handler).error(refEq(new Error("Invalid email address: !123")));
+        verify(handler).error(refEq(new ValidationError("Invalid email address: !123")));
     }
 }

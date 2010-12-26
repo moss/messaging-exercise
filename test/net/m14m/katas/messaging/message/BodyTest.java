@@ -1,6 +1,5 @@
 package net.m14m.katas.messaging.message;
 
-import net.m14m.katas.messaging.Error;
 import net.m14m.katas.messaging.*;
 import org.junit.*;
 import org.junit.runner.*;
@@ -16,11 +15,12 @@ public class BodyTest {
 
     @Test public void validIfNonEmpty() {
         new Body("This is some text.").reportProblems(errorHandler);
-        verify(errorHandler, never()).error(any(net.m14m.katas.messaging.Error.class));
+        verify(errorHandler, never()).error(any(ValidationError.class));
     }
 
     @Test public void invalidIfEmpty() {
         new Body("").reportProblems(errorHandler);
-        verify(errorHandler).error(refEq(new Error("Cannot send an email with no body.")));
+        verify(errorHandler)
+                .error(refEq(new ValidationError("Cannot send an email with no body.")));
     }
 }

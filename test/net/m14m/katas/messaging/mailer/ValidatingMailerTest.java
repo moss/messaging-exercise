@@ -1,6 +1,6 @@
 package net.m14m.katas.messaging.mailer;
 
-import net.m14m.katas.messaging.Mailer;
+import net.m14m.katas.messaging.*;
 import net.m14m.katas.messaging.message.*;
 import org.junit.*;
 import org.junit.runner.*;
@@ -47,7 +47,7 @@ public class ValidatingMailerTest {
     }
 
     @Test public void reportsErrors() {
-        validatingMailer.error(new net.m14m.katas.messaging.Error("There was an error."));
+        validatingMailer.error(new ValidationError("There was an error."));
         assertEquals("There was an error.\n", output());
     }
 
