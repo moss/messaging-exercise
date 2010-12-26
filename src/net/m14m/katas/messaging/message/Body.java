@@ -12,7 +12,7 @@ public class Body {
     }
 
     public void writeTo(PrintWriter network) {
-        network.println(body);
+        network.print(body);
     }
 
     public void reportProblems(ErrorHandler handler) {

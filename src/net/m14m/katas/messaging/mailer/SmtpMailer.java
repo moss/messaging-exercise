@@ -18,6 +18,7 @@ public class SmtpMailer implements Mailer {
         network.println();
         body.writeTo(network);
         network.println();
+        network.println();
         network.println("disconnect");
     }
 }
