@@ -1,10 +1,11 @@
 package net.m14m.katas.messaging.mailer;
 
-import net.m14m.katas.messaging.message.*;
+import net.m14m.katas.messaging.message.Body;
 import org.junit.*;
 
 import java.io.*;
 
+import static net.m14m.katas.messaging.message.ToAddressBlock.parseCommaSeparated;
 import static org.junit.Assert.*;
 
 public class SmtpMailerTest {
@@ -17,9 +18,20 @@ public class SmtpMailerTest {
     }
 
     @Test public void sendsTheEmailOutToTheNetwork() {
-        mailer.send(ToAddressBlock.parseCommaSeparated("joe@example.com"), new Body("Hi there!"));
+        mailer.send(parseCommaSeparated("joe@example.com"), new Body("Hi there!"));
         assertEquals("connect smtp\n" +
                 "To: joe@example.com\n" +
+                "\n" +
+                "Hi there!\n" +
+                "\n" +
+                "disconnect\n", network.toString());
+    }
+
+    @Test public void multipleToAddresses() {
+        mailer.send(parseCommaSeparated("joe@example.com,jen@example.com"), new Body("Hi there!"));
+        assertEquals("connect smtp\n" +
+                "To: joe@example.com\n" +
+                "To: jen@example.com\n" +
                 "\n" +
                 "Hi there!\n" +
                 "\n" +
