@@ -1,4 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
+
+import net.m14m.katas.messaging.ErrorHandler;
 
 import java.io.PrintWriter;
 import java.util.*;

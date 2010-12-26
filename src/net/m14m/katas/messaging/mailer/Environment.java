@@ -1,4 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.mailer;
+
+import net.m14m.katas.messaging.message.*;
 
 import java.io.PrintWriter;
 

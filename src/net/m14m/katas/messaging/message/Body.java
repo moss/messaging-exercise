@@ -1,4 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
+
+import net.m14m.katas.messaging.ErrorHandler;
 
 import java.io.PrintWriter;
 
@@ -14,6 +16,7 @@ public class Body {
     }
 
     public void reportProblems(ErrorHandler handler) {
-        if (body.isEmpty()) handler.error(new Error("Cannot send an email with no body."));
+        if (body.isEmpty())
+            handler.error(new net.m14m.katas.messaging.Error("Cannot send an email with no body."));
     }
 }

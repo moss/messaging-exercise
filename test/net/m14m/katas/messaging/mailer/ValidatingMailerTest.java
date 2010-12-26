@@ -1,5 +1,7 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.mailer;
 
+import net.m14m.katas.messaging.Mailer;
+import net.m14m.katas.messaging.message.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.Mock;
@@ -45,7 +47,7 @@ public class ValidatingMailerTest {
     }
 
     @Test public void reportsErrors() {
-        validatingMailer.error(new Error("There was an error."));
+        validatingMailer.error(new net.m14m.katas.messaging.Error("There was an error."));
         assertEquals("There was an error.\n", output());
     }
 

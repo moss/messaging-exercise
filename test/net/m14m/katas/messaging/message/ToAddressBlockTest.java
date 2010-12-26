@@ -1,5 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
 
+import net.m14m.katas.messaging.ErrorHandler;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.Mock;
@@ -7,7 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.*;
 
-import static net.m14m.katas.messaging.ToAddressBlock.parseCommaSeparated;
+import static net.m14m.katas.messaging.message.ToAddressBlock.parseCommaSeparated;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -26,6 +27,6 @@ public class ToAddressBlockTest {
     @Test public void shouldReportAllErrors() {
         ToAddressBlock block = parseCommaSeparated("bad address,ok@example.com,other bad address");
         block.reportProblems(errorHandler);
-        verify(errorHandler, times(2)).error(any(Error.class));
+        verify(errorHandler, times(2)).error(any(net.m14m.katas.messaging.Error.class));
     }
 }

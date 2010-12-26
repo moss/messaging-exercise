@@ -1,5 +1,6 @@
 package net.m14m.katas.messaging;
 
+import net.m14m.katas.messaging.application.Main;
 import org.junit.*;
 
 import java.io.*;

@@ -1,4 +1,7 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.application;
+
+import net.m14m.katas.messaging.mailer.Environment;
+import net.m14m.katas.messaging.message.*;
 
 public class Command {
     private String[] args;

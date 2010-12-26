@@ -1,5 +1,7 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
 
+import net.m14m.katas.messaging.Error;
+import net.m14m.katas.messaging.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.Mock;
@@ -14,7 +16,7 @@ public class BodyTest {
 
     @Test public void validIfNonEmpty() {
         new Body("This is some text.").reportProblems(errorHandler);
-        verify(errorHandler, never()).error(any(Error.class));
+        verify(errorHandler, never()).error(any(net.m14m.katas.messaging.Error.class));
     }
 
     @Test public void invalidIfEmpty() {
