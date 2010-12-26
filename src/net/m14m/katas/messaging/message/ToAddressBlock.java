@@ -30,4 +30,16 @@ public class ToAddressBlock {
             address.reportProblems(handler);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ToAddressBlock that = (ToAddressBlock) o;
+        return addresses.equals(that.addresses);
+    }
+
+    @Override
+    public int hashCode() {
+        return addresses.hashCode();
+    }
 }

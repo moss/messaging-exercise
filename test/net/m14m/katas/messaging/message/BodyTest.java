@@ -20,7 +20,6 @@ public class BodyTest {
 
     @Test public void invalidIfEmpty() {
         new Body("").reportProblems(errorHandler);
-        verify(errorHandler)
-                .error(refEq(new ValidationError("Cannot send an email with no body.")));
+        verify(errorHandler).error(new ValidationError("Cannot send an email with no body."));
     }
 }

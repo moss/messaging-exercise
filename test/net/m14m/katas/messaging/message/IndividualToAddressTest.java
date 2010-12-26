@@ -29,6 +29,6 @@ public class IndividualToAddressTest {
 
     @Test public void invalidIfItHasNoAtSign() {
         new IndividualToAddress("!123").reportProblems(handler);
-        verify(handler).error(refEq(new ValidationError("Invalid email address: !123")));
+        verify(handler).error(new ValidationError("Invalid email address: !123"));
     }
 }

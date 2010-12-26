@@ -19,4 +19,16 @@ public class IndividualToAddress {
         if (!address.contains("@"))
             handler.error(new ValidationError("Invalid email address: " + address));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        IndividualToAddress that = (IndividualToAddress) o;
+        return address.equals(that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return address.hashCode();
+    }
 }

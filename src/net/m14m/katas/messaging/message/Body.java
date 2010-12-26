@@ -19,4 +19,16 @@ public class Body {
         if (body.isEmpty())
             handler.error(new ValidationError("Cannot send an email with no body."));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Body that = (Body) o;
+        return body.equals(that.body);
+    }
+
+    @Override
+    public int hashCode() {
+        return body.hashCode();
+    }
 }

@@ -19,8 +19,8 @@ public class ToAddressBlockTest {
     @Test public void shouldWriteEachAddress() {
         ToAddressBlock block = parseCommaSeparated("a@example.com,b@example.com");
         block.writeHeader(formatter);
-        verify(formatter).append(refEq(new IndividualToAddress("a@example.com")));
-        verify(formatter).append(refEq(new IndividualToAddress("b@example.com")));
+        verify(formatter).append(new IndividualToAddress("a@example.com"));
+        verify(formatter).append(new IndividualToAddress("b@example.com"));
     }
 
     @Test public void shouldReportAllErrors() {
