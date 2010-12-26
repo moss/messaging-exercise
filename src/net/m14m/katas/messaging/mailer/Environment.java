@@ -1,6 +1,6 @@
 package net.m14m.katas.messaging.mailer;
 
-import net.m14m.katas.messaging.message.*;
+import net.m14m.katas.messaging.message.Message;
 
 import java.io.PrintWriter;
 
@@ -13,9 +13,9 @@ public class Environment {
         this.console = console;
     }
 
-    public void send(ToAddressBlock to, Body body) {
+    public void send(Message message) {
         SmtpMailer mailer = new SmtpMailer(network);
         ValidatingMailer validatingMailer = new ValidatingMailer(mailer, console);
-        validatingMailer.send(to, body);
+        message.sendThrough(validatingMailer);
     }
 }
