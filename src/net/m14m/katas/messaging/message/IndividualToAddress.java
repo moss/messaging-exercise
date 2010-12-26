@@ -12,7 +12,7 @@ public class IndividualToAddress {
     }
 
     public void appendTo(PrintWriter writer) {
-        writer.write(address);
+        writer.print(address);
     }
 
     public void reportProblems(ErrorHandler handler) {
