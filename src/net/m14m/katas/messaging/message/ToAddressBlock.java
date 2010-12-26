@@ -21,10 +21,9 @@ public class ToAddressBlock {
     }
 
     public void writeHeader(PrintWriter network) {
+        SmtpToAddressFormatter formatter = new SmtpToAddressFormatter(network);
         for (IndividualToAddress address : addresses) {
-            network.write("To: ");
-            address.appendTo(network);
-            network.println();
+            formatter.append(address);
         }
     }
 
