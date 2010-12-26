@@ -1,8 +1,11 @@
-package net.m14m.katas.messaging.message;
+package net.m14m.katas.messaging.mailer;
+
+import net.m14m.katas.messaging.ToAddressFormatter;
+import net.m14m.katas.messaging.message.IndividualToAddress;
 
 import java.io.PrintWriter;
 
-public class SmtpToAddressFormatter {
+public class SmtpToAddressFormatter implements ToAddressFormatter {
     private PrintWriter network;
 
     public SmtpToAddressFormatter(PrintWriter network) {

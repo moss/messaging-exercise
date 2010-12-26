@@ -1,8 +1,7 @@
 package net.m14m.katas.messaging.message;
 
-import net.m14m.katas.messaging.ErrorHandler;
+import net.m14m.katas.messaging.*;
 
-import java.io.PrintWriter;
 import java.util.*;
 
 public class ToAddressBlock {
@@ -20,8 +19,7 @@ public class ToAddressBlock {
         this.addresses = addresses;
     }
 
-    public void writeHeader(PrintWriter network) {
-        SmtpToAddressFormatter formatter = new SmtpToAddressFormatter(network);
+    public void writeHeader(ToAddressFormatter formatter) {
         for (IndividualToAddress address : addresses) {
             formatter.append(address);
         }

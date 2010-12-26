@@ -7,14 +7,16 @@ import java.io.PrintWriter;
 
 public class SmtpMailer implements Mailer {
     private PrintWriter network;
+    private SmtpToAddressFormatter toAddressFormatter;
 
     public SmtpMailer(PrintWriter network) {
         this.network = network;
+        toAddressFormatter = new SmtpToAddressFormatter(network);
     }
 
     public void send(ToAddressBlock to, Body body) {
         network.println("connect smtp");
-        to.writeHeader(network);
+        to.writeHeader(toAddressFormatter);
         network.println();
         body.writeTo(network);
         network.println();

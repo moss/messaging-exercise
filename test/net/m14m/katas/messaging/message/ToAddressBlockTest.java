@@ -6,22 +6,21 @@ import org.junit.runner.*;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.*;
-
 import static net.m14m.katas.messaging.message.ToAddressBlock.parseCommaSeparated;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ToAddressBlockTest {
-    private StringWriter network = new StringWriter();
     @Mock
     private ErrorHandler errorHandler;
+    @Mock
+    private ToAddressFormatter formatter;
 
     @Test public void shouldWriteEachAddress() {
         ToAddressBlock block = parseCommaSeparated("a@example.com,b@example.com");
-        block.writeHeader(new PrintWriter(network));
-        assertEquals("To: a@example.com\nTo: b@example.com\n", network.toString());
+        block.writeHeader(formatter);
+        verify(formatter).append(refEq(new IndividualToAddress("a@example.com")));
+        verify(formatter).append(refEq(new IndividualToAddress("b@example.com")));
     }
 
     @Test public void shouldReportAllErrors() {
