@@ -15,10 +15,7 @@ public class Main {
     }
 
     public static void main(String... args) {
-        ToAddressBlock to = ToAddressBlock.parseCommaSeparated(args[0]);
-        Body body = new Body(args[1]);
-        SmtpMailer mailer = new SmtpMailer(network);
-        ValidatingMailer validatingMailer = new ValidatingMailer(mailer, console);
-        validatingMailer.send(to, body);
+        Environment environment = new Environment(network, console);
+        new Command(args).runIn(environment);
     }
 }
