@@ -11,8 +11,8 @@ public class IndividualToAddress {
         this.address = address;
     }
 
-    public void writeHeader(PrintWriter network) {
-        network.println("To: " + address);
+    public void appendTo(PrintWriter writer) {
+        writer.write(address);
     }
 
     public void reportProblems(ErrorHandler handler) {

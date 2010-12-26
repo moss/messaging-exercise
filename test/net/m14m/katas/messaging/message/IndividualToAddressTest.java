@@ -6,12 +6,21 @@ import org.junit.runner.*;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.*;
+
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IndividualToAddressTest {
     @Mock
     private ErrorHandler handler;
+    private StringWriter writer = new StringWriter();
+
+    @Test public void appendsAddressToSomething() {
+        new IndividualToAddress("joe@example.com").appendTo(new PrintWriter(writer));
+        assertEquals("joe@example.com", writer.toString());
+    }
 
     @Test public void validIfItHasAnAtSign() {
         new IndividualToAddress("joe@example.com").reportProblems(handler);

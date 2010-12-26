@@ -22,7 +22,9 @@ public class ToAddressBlock {
 
     public void writeHeader(PrintWriter network) {
         for (IndividualToAddress address : addresses) {
-            address.writeHeader(network);
+            network.write("To: ");
+            address.appendTo(network);
+            network.println();
         }
     }
 
