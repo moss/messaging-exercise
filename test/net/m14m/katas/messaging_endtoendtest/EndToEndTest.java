@@ -1,5 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging_endtoendtest;
 
+import net.m14m.katas.messaging.Main;
 import org.junit.*;
 
 import java.io.*;
@@ -42,7 +43,13 @@ public class EndToEndTest {
     @Ignore @Test public void showAnErrorAndDoNotSendIfTheEmailAddressIsInvalid() {
         Main.main("no at sign", "Hi there!");
         networkShouldReceive(NO_OUTPUT);
-        consoleShouldReceive("Invalid email address: no at sign");
+        consoleShouldReceive("Invalid email address: no at sign\n");
+    }
+
+    @Ignore @Test public void showAnErrorAndDoNotSendIfTheBodyIsInvalid() {
+        Main.main("dinah@example.com", "");
+        networkShouldReceive(NO_OUTPUT);
+        consoleShouldReceive("Cannot send an email with no body.\n");
     }
 
     @Ignore @Test public void sendAnEmailToMultipleAddresses() {
@@ -68,7 +75,16 @@ public class EndToEndTest {
     @Ignore @Test public void handleErrorsGracefully() {
         Main.setNetwork(new BadNetworkConnection());
         Main.main("joe@example.com", "Hi there!");
-        consoleShouldReceive("Connection error. Please try again.");
+        consoleShouldReceive("Connection error. Please try again.\n");
+    }
+
+    @Ignore @Test public void chatsToMultipleAddressesGetSentIndividually() {
+        Main.main("-im", "leslie@chat.example.com,joey@chat.example.com", "Hello.");
+        networkShouldReceive("connect chat\n" +
+                "<leslie@chat.example.com>(Hello.)\n" +
+                "<joey@chat.example.com>(Hello.)\n" +
+                "disconnect\n");
+        consoleShouldReceive(NO_OUTPUT);
     }
 
     private void networkShouldReceive(String output) {
