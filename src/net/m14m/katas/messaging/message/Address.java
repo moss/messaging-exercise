@@ -18,4 +18,16 @@ public class Address {
     @Override public String toString() {
         return address;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Address that = (Address) o;
+        return address.equals(that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return address.hashCode();
+    }
 }

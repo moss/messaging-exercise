@@ -16,4 +16,16 @@ public class Body {
     @Override public String toString() {
         return body;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Body that = (Body) o;
+        return body.equals(that.body);
+    }
+
+    @Override
+    public int hashCode() {
+        return body.hashCode();
+    }
 }

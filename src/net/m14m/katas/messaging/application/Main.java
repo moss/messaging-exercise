@@ -19,9 +19,9 @@ public class Main {
     }
 
     public static void main(String... stringArguments) {
-        Arguments arguments = new Arguments(stringArguments);
+        CommandLine commandLine = new CommandLine(stringArguments);
         ErrorBroadcaster errorBroadcaster = new ErrorBroadcaster(errorReporter, network);
-        Message message = arguments.createMessage();
+        Message message = commandLine.parseMessage();
         message.validate(errorBroadcaster);
         network.sendMail(message);
     }

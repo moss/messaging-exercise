@@ -26,4 +26,18 @@ public class Message {
         connection.println();
         connection.println("disconnect");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return addressList.equals(message.addressList) && body.equals(message.body);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = addressList.hashCode();
+        result = 31 * result + body.hashCode();
+        return result;
+    }
 }

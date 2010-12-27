@@ -1,13 +1,13 @@
 package net.m14m.katas.messaging.message;
 
-public class Arguments {
+public class CommandLine {
     private String[] arguments;
 
-    public Arguments(String... arguments) {
+    public CommandLine(String... arguments) {
         this.arguments = arguments;
     }
 
-    public Message createMessage() {
+    public Message parseMessage() {
         Address address = new Address(arguments[0]);
         Body body = new Body(arguments[1]);
         return new Message(new AddressList(address), body);
