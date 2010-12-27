@@ -1,13 +1,13 @@
 package net.m14m.katas.messaging;
 
-import java.io.*;
+import java.io.Writer;
 
 public class Main {
-    private static PrintWriter network;
+    private static Network network;
     private static Writer console;
 
     public static void setNetwork(Writer network) {
-        Main.network = new PrintWriter(network);
+        Main.network = new Network(network);
     }
 
     public static void setConsole(Writer console) {
@@ -15,11 +15,6 @@ public class Main {
     }
 
     public static void main(String... args) {
-        network.println("connect smtp");
-        network.println("To: joe@example.com");
-        network.println();
-        network.println("Hi there!");
-        network.println();
-        network.println("disconnect");
+        network.sendMail();
     }
 }
