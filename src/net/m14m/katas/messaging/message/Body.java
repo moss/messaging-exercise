@@ -15,6 +15,10 @@ public class Body {
         network.print(body);
     }
 
+    public void writeEscapingParentheses(PrintWriter network) {
+        network.print(body.replace(")", "\\)"));
+    }
+
     public void reportProblems(ErrorHandler handler) {
         if (body.isEmpty())
             handler.error(new ValidationError("Cannot send an email with no body."));

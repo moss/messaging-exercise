@@ -18,7 +18,7 @@ public class ChatMailer implements Mailer, ToAddressFormatter {
         to.writeHeader(this);
         network.print(">");
         network.print("(");
-        body.writeTo(network);
+        body.writeEscapingParentheses(network);
         network.println(")");
         network.println("disconnect");
     }

@@ -22,4 +22,11 @@ public class ChatMailerTest {
                 "<joe@example.com>(Hi there!)\n" +
                 "disconnect\n", network.toString());
     }
+
+    @Test public void escapesClosingParentheses() {
+        mailer.send(ToAddressBlock.parseCommaSeparated("joe@example.com"), new Body(")"));
+        assertEquals("connect chat\n" +
+                "<joe@example.com>(\\))\n" +
+                "disconnect\n", network.toString());
+    }
 }
