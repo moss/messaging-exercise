@@ -2,12 +2,18 @@ package net.m14m.katas.messaging.message;
 
 import net.m14m.katas.messaging.errors.ErrorListener;
 
-import java.util.Arrays;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class AddressList {
-    private final Address[] addresses;
+    private final List<Address> addresses;
 
     public AddressList(Address... addresses) {
+        this.addresses = asList(addresses);
+    }
+
+    public AddressList(List<Address> addresses) {
         this.addresses = addresses;
     }
 
@@ -33,11 +39,11 @@ public class AddressList {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         AddressList that = (AddressList) o;
-        return Arrays.equals(addresses, that.addresses);
+        return addresses.equals(that.addresses);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(addresses);
+        return addresses.hashCode();
     }
 }
