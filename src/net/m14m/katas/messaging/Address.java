@@ -7,8 +7,8 @@ public class Address {
         this.address = address;
     }
 
-    public void validate(ErrorReporter reporter) {
-        if (!isValid()) reporter.error(ErrorMessage.withCause("Invalid email address", this));
+    public void validate(ErrorListener listener) {
+        if (!isValid()) listener.error(ErrorMessage.withCause("Invalid email address", this));
     }
 
     public boolean isValid() {

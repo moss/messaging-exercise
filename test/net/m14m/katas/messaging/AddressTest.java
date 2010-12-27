@@ -10,19 +10,19 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AddressTest {
-    @Mock private ErrorReporter errorReporter;
+    @Mock private ErrorListener listener;
 
     @Test public void validIfItContainsAnAtSign() {
         Address address = new Address("foo@bar.baz");
-        address.validate(errorReporter);
+        address.validate(listener);
         assertTrue("with at sign", address.isValid());
-        verify(errorReporter, never()).error(any(ErrorMessage.class));
+        verify(listener, never()).error(any(ErrorMessage.class));
     }
 
     @Test public void invalidIfItContainsNoAtSign() {
         Address address = new Address("foo.bar.baz");
-        address.validate(errorReporter);
+        address.validate(listener);
         assertFalse("no at sign", address.isValid());
-        verify(errorReporter).error(any(ErrorMessage.class));
+        verify(listener).error(any(ErrorMessage.class));
     }
 }

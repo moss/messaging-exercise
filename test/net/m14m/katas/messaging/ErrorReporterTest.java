@@ -8,14 +8,14 @@ import static org.junit.Assert.*;
 
 public class ErrorReporterTest {
     private StringWriter console = new StringWriter();
-    private ErrorReporter reporter;
+    private ErrorListener listener;
 
     @Before public void setUp() throws Exception {
-        reporter = new ErrorReporter(console);
+        listener = new ErrorReporter(console);
     }
 
     @Test public void reportsErrorMessagesToTheConsole() {
-        reporter.error(new ErrorMessage("Something went wrong."));
+        listener.error(new ErrorMessage("Something went wrong."));
         assertEquals("Something went wrong.\n", console.toString());
     }
 }

@@ -11,9 +11,9 @@ public class Message {
         this.body = body;
     }
 
-    public void validate(ErrorReporter reporter) {
-        address.validate(reporter);
-        body.validate(reporter);
+    public void validate(ErrorListener listener) {
+        address.validate(listener);
+        body.validate(listener);
     }
 
     public boolean isValid() {

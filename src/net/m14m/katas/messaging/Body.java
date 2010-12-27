@@ -7,8 +7,8 @@ public class Body {
         this.body = body;
     }
 
-    public void validate(ErrorReporter errorReporter) {
-        if (!isValid()) errorReporter.error(new ErrorMessage("Cannot send an email with no body."));
+    public void validate(ErrorListener listener) {
+        if (!isValid()) listener.error(new ErrorMessage("Cannot send an email with no body."));
     }
 
     public boolean isValid() {

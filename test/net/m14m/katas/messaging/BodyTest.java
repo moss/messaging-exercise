@@ -9,15 +9,15 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BodyTest {
-    @Mock private ErrorReporter errorReporter;
+    @Mock private ErrorListener listener;
 
     @Test public void validIfHasAnyText() {
-        new Body(".").validate(errorReporter);
-        verify(errorReporter, never()).error(any(ErrorMessage.class));
+        new Body(".").validate(listener);
+        verify(listener, never()).error(any(ErrorMessage.class));
     }
 
     @Test public void invalidIfEmpty() {
-        new Body("").validate(errorReporter);
-        verify(errorReporter).error(any(ErrorMessage.class));
+        new Body("").validate(listener);
+        verify(listener).error(any(ErrorMessage.class));
     }
 }

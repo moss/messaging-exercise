@@ -13,26 +13,26 @@ import static org.mockito.Mockito.*;
 public class MessageTest {
     private static final Address VALID_ADDRESS = new Address("a@b.c");
     private static final Body VALID_BODY = new Body("hi");
-    @Mock private ErrorReporter errorReporter;
+    @Mock private ErrorListener listener;
 
     @Test public void validIfBothPartsAreValid() {
         Message message = new Message(VALID_ADDRESS, VALID_BODY);
-        message.validate(errorReporter);
+        message.validate(listener);
         assertTrue("valid", message.isValid());
-        verify(errorReporter, never()).error(any(ErrorMessage.class));
+        verify(listener, never()).error(any(ErrorMessage.class));
     }
 
     @Test public void invalidIfEmailAddressIsInvalid() {
         Message message = new Message(new Address("a"), VALID_BODY);
-        message.validate(errorReporter);
+        message.validate(listener);
         assertFalse("invalid", message.isValid());
-        verify(errorReporter).error(any(ErrorMessage.class));
+        verify(listener).error(any(ErrorMessage.class));
     }
 
     @Test public void invalidIfBodyIsEmpty() {
         Message message = new Message(VALID_ADDRESS, new Body(""));
-        message.validate(errorReporter);
+        message.validate(listener);
         assertFalse("invalid", message.isValid());
-        verify(errorReporter).error(any(ErrorMessage.class));
+        verify(listener).error(any(ErrorMessage.class));
     }
 }
