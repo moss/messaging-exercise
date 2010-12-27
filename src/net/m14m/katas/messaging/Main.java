@@ -15,6 +15,6 @@ public class Main {
     }
 
     public static void main(String... args) {
-        network.sendMail();
+        network.sendMail(new Address(args[0]), new Body(args[1]));
     }
 }

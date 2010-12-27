@@ -9,11 +9,11 @@ public class Network {
         this.connection = new PrintWriter(connection);
     }
 
-    public void sendMail() {
+    public void sendMail(Address address, Body body) {
         connection.println("connect smtp");
-        connection.println("To: joe@example.com");
+        connection.println("To: " + address);
         connection.println();
-        connection.println("Hi there!");
+        connection.println(body);
         connection.println();
         connection.println("disconnect");
     }
