@@ -7,6 +7,10 @@ public class Address {
         this.address = address;
     }
 
+    public void validate(ErrorReporter reporter) {
+        if (!isValid()) reporter.error(ErrorMessage.withCause("Invalid email address", this));
+    }
+
     public boolean isValid() {
         return address.contains("@");
     }

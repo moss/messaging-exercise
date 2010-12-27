@@ -9,12 +9,6 @@ public class ErrorReporter {
         this.console = new PrintWriter(console);
     }
 
-    public void validate(Address address) {
-        if (!address.isValid()) {
-            error(ErrorMessage.withCause("Invalid email address", address));
-        }
-    }
-
     public void error(ErrorMessage message) {
         console.println(message);
     }

@@ -11,6 +11,10 @@ public class Message {
         this.body = body;
     }
 
+    public void validate(ErrorReporter reporter) {
+        address.validate(reporter);
+    }
+
     public boolean isValid() {
         if (!address.isValid()) return false;
         if (!body.isValid()) return false;
