@@ -13,6 +13,7 @@ public class Message {
 
     public void validate(ErrorReporter reporter) {
         address.validate(reporter);
+        body.validate(reporter);
     }
 
     public boolean isValid() {
