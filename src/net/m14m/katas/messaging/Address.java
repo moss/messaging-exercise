@@ -7,6 +7,10 @@ public class Address {
         this.address = address;
     }
 
+    public boolean isValid() {
+        return address.contains("@");
+    }
+
     @Override public String toString() {
         return address;
     }
