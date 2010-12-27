@@ -11,7 +11,11 @@ public class ErrorReporter {
 
     public void validate(Address address) {
         if (!address.isValid()) {
-            console.println("Invalid email address: " + address);
+            error(ErrorMessage.withCause("Invalid email address", address));
         }
+    }
+
+    public void error(ErrorMessage message) {
+        console.println(message);
     }
 }
