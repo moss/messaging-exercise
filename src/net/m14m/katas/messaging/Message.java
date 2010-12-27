@@ -6,8 +6,8 @@ public class Message {
     private final AddressList addressList;
     private final Body body;
 
-    public Message(Address address, Body body) {
-        addressList = new AddressList(address);
+    public Message(AddressList addressList, Body body) {
+        this.addressList = addressList;
         this.body = body;
     }
 

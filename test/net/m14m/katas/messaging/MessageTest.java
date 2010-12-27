@@ -15,19 +15,19 @@ public class MessageTest {
     @Mock private ErrorListener listener;
 
     @Test public void validIfBothPartsAreValid() {
-        Message message = new Message(VALID_ADDRESS, VALID_BODY);
+        Message message = new Message(new AddressList(VALID_ADDRESS), VALID_BODY);
         message.validate(listener);
         verify(listener, never()).error(any(ErrorMessage.class));
     }
 
     @Test public void invalidIfEmailAddressIsInvalid() {
-        Message message = new Message(new Address("a"), VALID_BODY);
+        Message message = new Message(new AddressList(new Address("a")), VALID_BODY);
         message.validate(listener);
         verify(listener).error(any(ErrorMessage.class));
     }
 
     @Test public void invalidIfBodyIsEmpty() {
-        Message message = new Message(VALID_ADDRESS, new Body(""));
+        Message message = new Message(new AddressList(VALID_ADDRESS), new Body(""));
         message.validate(listener);
         verify(listener).error(any(ErrorMessage.class));
     }
