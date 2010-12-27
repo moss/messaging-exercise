@@ -8,11 +8,9 @@ public class Address {
     }
 
     public void validate(ErrorListener listener) {
-        if (!isValid()) listener.error(ErrorMessage.withCause("Invalid email address", this));
-    }
-
-    public boolean isValid() {
-        return address.contains("@");
+        if (!address.contains("@")) {
+            listener.error(ErrorMessage.withCause("Invalid email address", this));
+        }
     }
 
     @Override public String toString() {

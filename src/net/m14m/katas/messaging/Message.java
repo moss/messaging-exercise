@@ -16,12 +16,6 @@ public class Message {
         body.validate(listener);
     }
 
-    public boolean isValid() {
-        if (!address.isValid()) return false;
-        if (!body.isValid()) return false;
-        return true;
-    }
-
     public void writeTo(PrintWriter connection) {
         connection.println("connect smtp");
         connection.println("To: " + address);

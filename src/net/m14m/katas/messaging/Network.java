@@ -11,7 +11,6 @@ public class Network implements ErrorListener {
     }
 
     public void sendMail(Message message) {
-        if (!message.isValid()) return;
         if (disabled) return;
         message.writeTo(connection);
     }

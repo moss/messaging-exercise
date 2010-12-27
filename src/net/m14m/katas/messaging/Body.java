@@ -8,11 +8,7 @@ public class Body {
     }
 
     public void validate(ErrorListener listener) {
-        if (!isValid()) listener.error(new ErrorMessage("Cannot send an email with no body."));
-    }
-
-    public boolean isValid() {
-        return !body.isEmpty();
+        if (body.isEmpty()) listener.error(new ErrorMessage("Cannot send an email with no body."));
     }
 
     @Override public String toString() {
