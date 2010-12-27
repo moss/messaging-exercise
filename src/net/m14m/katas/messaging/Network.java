@@ -10,6 +10,7 @@ public class Network {
     }
 
     public void sendMail(Address address, Body body) {
+        if (!address.isValid()) return;
         connection.println("connect smtp");
         connection.println("To: " + address);
         connection.println();
