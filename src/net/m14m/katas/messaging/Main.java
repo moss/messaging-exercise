@@ -17,7 +17,8 @@ public class Main {
     public static void main(String... args) {
         Address address = new Address(args[0]);
         Body body = new Body(args[1]);
+        Message message = new Message(address, body);
         errorReporter.validate(address);
-        network.sendMail(address, body);
+        network.sendMail(message);
     }
 }

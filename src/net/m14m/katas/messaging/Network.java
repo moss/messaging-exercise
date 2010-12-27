@@ -9,13 +9,8 @@ public class Network {
         this.connection = new PrintWriter(connection);
     }
 
-    public void sendMail(Address address, Body body) {
-        if (!address.isValid()) return;
-        connection.println("connect smtp");
-        connection.println("To: " + address);
-        connection.println();
-        connection.println(body);
-        connection.println();
-        connection.println("disconnect");
+    public void sendMail(Message message) {
+        if (!message.isValid()) return;
+        message.writeTo(connection);
     }
 }

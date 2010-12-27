@@ -18,7 +18,7 @@ public class NetworkTest {
     }
 
     @Test public void sendEmailToSpecifiedAddressWithSpecifiedBody() {
-        network.sendMail(VALID_ADDRESS, BODY);
+        network.sendMail(new Message(VALID_ADDRESS, BODY));
         assertEquals("connect smtp\n" +
                 "To: anita@example.com\n" +
                 "\n" +
@@ -28,7 +28,7 @@ public class NetworkTest {
     }
 
     @Test public void shouldNotSendIfAddressIsInvalid() {
-        network.sendMail(INVALID_ADDRESS, BODY);
+        network.sendMail(new Message(INVALID_ADDRESS, BODY));
         assertEquals("should send nothing", "", output.toString());
     }
 }
