@@ -1,5 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
 
+import net.m14m.katas.messaging.errors.ErrorListener;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.Mock;

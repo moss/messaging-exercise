@@ -1,4 +1,4 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
 
 public class Arguments {
     private String[] arguments;

@@ -1,4 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
+
+import net.m14m.katas.messaging.errors.ErrorListener;
 
 public class AddressList {
     private final Address[] addresses;

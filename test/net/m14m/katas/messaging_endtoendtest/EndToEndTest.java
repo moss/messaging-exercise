@@ -1,6 +1,6 @@
 package net.m14m.katas.messaging_endtoendtest;
 
-import net.m14m.katas.messaging.Main;
+import net.m14m.katas.messaging.application.Main;
 import org.junit.*;
 
 import java.io.*;

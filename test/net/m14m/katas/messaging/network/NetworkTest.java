@@ -1,5 +1,7 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.network;
 
+import net.m14m.katas.messaging.errors.ErrorMessage;
+import net.m14m.katas.messaging.message.*;
 import org.junit.*;
 
 import java.io.StringWriter;

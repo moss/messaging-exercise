@@ -1,4 +1,4 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.errors;
 
 public class ErrorBroadcaster implements ErrorListener {
     private final ErrorListener[] listeners;

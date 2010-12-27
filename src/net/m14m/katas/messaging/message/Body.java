@@ -1,4 +1,6 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.message;
+
+import net.m14m.katas.messaging.errors.*;
 
 public class Body {
     private final String body;

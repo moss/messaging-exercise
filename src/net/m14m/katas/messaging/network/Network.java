@@ -1,4 +1,7 @@
-package net.m14m.katas.messaging;
+package net.m14m.katas.messaging.network;
+
+import net.m14m.katas.messaging.errors.*;
+import net.m14m.katas.messaging.message.Message;
 
 import java.io.*;
 
