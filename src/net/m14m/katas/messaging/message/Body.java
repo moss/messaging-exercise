@@ -20,8 +20,9 @@ public class Body {
     }
 
     public void reportProblems(ErrorHandler handler) {
-        if (body.isEmpty())
+        if (body.isEmpty()) {
             handler.error(new ValidationError("Cannot send an email with no body."));
+        }
     }
 
     @Override

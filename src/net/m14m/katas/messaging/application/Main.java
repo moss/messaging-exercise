@@ -23,10 +23,6 @@ public class Main {
         environment.registerMailer(smtp, new ValidatingMailer(new SmtpMailer(network), console));
         environment.registerMailer(chat, new ValidatingMailer(new ChatMailer(network), console));
         new Command(args).runIn(environment);
-        reportConnectionProblems();
-    }
-
-    private static void reportConnectionProblems() {
-        if (network.checkError()) console.println("Connection error. Please try again.");
+        new ConnectionChecker(network).reportProblemsTo(console);
     }
 }

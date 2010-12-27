@@ -8,11 +8,9 @@ public class ToAddressBlock {
     private final List<IndividualToAddress> addresses;
 
     public static ToAddressBlock parseCommaSeparated(String fullAddressString) {
-        List<IndividualToAddress> addresses = new ArrayList<IndividualToAddress>();
-        for (String individualAddressString : fullAddressString.split(",")) {
-            addresses.add(new IndividualToAddress(individualAddressString));
-        }
-        return new ToAddressBlock(addresses);
+        List<IndividualToAddress> addressList = new ArrayList<IndividualToAddress>();
+        new MultipleAddressString(fullAddressString).addIndividualAddresses(addressList);
+        return new ToAddressBlock(addressList);
     }
 
     private ToAddressBlock(List<IndividualToAddress> addresses) {
@@ -41,5 +39,19 @@ public class ToAddressBlock {
     @Override
     public int hashCode() {
         return addresses.hashCode();
+    }
+
+    private static class MultipleAddressString {
+        private String fullAddressString;
+
+        public MultipleAddressString(String fullAddressString) {
+            this.fullAddressString = fullAddressString;
+        }
+
+        public void addIndividualAddresses(List<IndividualToAddress> addresses) {
+            for (String individualAddressString : fullAddressString.split(",")) {
+                addresses.add(new IndividualToAddress(individualAddressString));
+            }
+        }
     }
 }
