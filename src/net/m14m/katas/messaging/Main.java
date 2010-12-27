@@ -14,11 +14,10 @@ public class Main {
         errorReporter = new ErrorReporter(console);
     }
 
-    public static void main(String... args) {
+    public static void main(String... stringArguments) {
+        Arguments arguments = new Arguments(stringArguments);
         ErrorBroadcaster errorBroadcaster = new ErrorBroadcaster(errorReporter, network);
-        Address address = new Address(args[0]);
-        Body body = new Body(args[1]);
-        Message message = new Message(new AddressList(address), body);
+        Message message = arguments.createMessage();
         message.validate(errorBroadcaster);
         network.sendMail(message);
     }
