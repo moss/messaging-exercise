@@ -7,6 +7,10 @@ public class Body {
         this.body = body;
     }
 
+    public boolean isValid() {
+        return !body.isEmpty();
+    }
+
     @Override public String toString() {
         return body;
     }

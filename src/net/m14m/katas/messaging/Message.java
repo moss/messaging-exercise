@@ -12,7 +12,9 @@ public class Message {
     }
 
     public boolean isValid() {
-        return address.isValid();
+        if (!address.isValid()) return false;
+        if (!body.isValid()) return false;
+        return true;
     }
 
     public void writeTo(PrintWriter connection) {
