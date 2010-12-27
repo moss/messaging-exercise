@@ -15,10 +15,11 @@ public class Main {
     }
 
     public static void main(String... args) {
+        ErrorBroadcaster errorBroadcaster = new ErrorBroadcaster(listener);
         Address address = new Address(args[0]);
         Body body = new Body(args[1]);
         Message message = new Message(address, body);
-        message.validate(listener);
+        message.validate(errorBroadcaster);
         network.sendMail(message);
     }
 }
