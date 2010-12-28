@@ -6,8 +6,6 @@ import org.junit.runner.*;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.*;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -16,7 +14,7 @@ public class MessageTest {
     @Mock private ErrorListener listener;
     @Mock private AddressList addressList;
     @Mock private Body body;
-    private StringWriter output = new StringWriter();
+    @Mock private Formatter formatter;
     private Message message;
 
     @Before public void setUp() {
@@ -29,12 +27,8 @@ public class MessageTest {
         verify(body).validate(listener);
     }
 
-    @Test public void sendEmailToSpecifiedAddressListWithSpecifiedBody() {
-        message.writeTo(new PrintWriter(output));
-        assertEquals("connect smtp\n" +
-                "addressList\n" +
-                "body\n" +
-                "\n" +
-                "disconnect\n", output.toString());
+    @Test public void formatTheMessageUsingAFormatter() {
+        when(formatter.format(addressList, body)).thenReturn("Formatted Message");
+        assertEquals("Formatted Message", message.format(formatter));
     }
 }

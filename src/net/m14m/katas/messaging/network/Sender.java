@@ -15,7 +15,10 @@ public class Sender implements ErrorListener {
 
     public void sendMail(Message message) {
         if (disabled) return;
-        message.writeTo(connection);
+        connection.println("connect smtp");
+        MailFormatter formatter = new MailFormatter();
+        connection.println(message.format(formatter));
+        connection.println("disconnect");
     }
 
     public void error(ErrorMessage message) {
