@@ -1,38 +1,34 @@
 package net.m14m.katas.messaging.network;
 
 import net.m14m.katas.messaging.errors.ErrorMessage;
-import net.m14m.katas.messaging.message.*;
+import net.m14m.katas.messaging.message.Message;
 import org.junit.*;
+import org.junit.runner.*;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.StringWriter;
+import java.io.PrintWriter;
 
-import static net.m14m.katas.messaging.message.MessageFactory.createMessage;
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class NetworkTest {
-    private static final Address ADDRESS = new Address("anita@example.com");
-    private static final Body BODY = new Body("Greetings.");
-    private static final Message MESSAGE = createMessage(BODY, ADDRESS);
-    private StringWriter output = new StringWriter();
+    @Mock private Message message;
+    @Mock private PrintWriter connection;
     private Network network;
 
     @Before public void setUp() {
-        network = new Network(output);
+        network = new Network(connection);
     }
 
     @Test public void sendEmailToSpecifiedAddressWithSpecifiedBody() {
-        network.sendMail(MESSAGE);
-        assertEquals("connect smtp\n" +
-                "To: anita@example.com\n" +
-                "\n" +
-                "Greetings.\n" +
-                "\n" +
-                "disconnect\n", output.toString());
+        network.sendMail(message);
+        verify(message).writeTo(connection);
     }
 
     @Test public void shouldNotSendIfNotifiedOfErrors() {
         network.error(new ErrorMessage("Something's wrong."));
-        network.sendMail(MESSAGE);
-        assertEquals("should send nothing", "", output.toString());
+        network.sendMail(message);
+        verify(message, never()).writeTo(any(PrintWriter.class));
     }
 }

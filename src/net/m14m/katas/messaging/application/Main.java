@@ -4,14 +4,14 @@ import net.m14m.katas.messaging.errors.*;
 import net.m14m.katas.messaging.message.*;
 import net.m14m.katas.messaging.network.Network;
 
-import java.io.Writer;
+import java.io.*;
 
 public class Main {
     private static Network network;
     private static ErrorReporter errorReporter;
 
     public static void setNetwork(Writer network) {
-        Main.network = new Network(network);
+        Main.network = new Network(new PrintWriter(network));
     }
 
     public static void setConsole(Writer console) {
