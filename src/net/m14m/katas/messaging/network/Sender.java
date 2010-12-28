@@ -5,11 +5,11 @@ import net.m14m.katas.messaging.message.Message;
 
 import java.io.PrintWriter;
 
-public class Network implements ErrorListener {
+public class Sender implements ErrorListener {
     private PrintWriter connection;
     private boolean disabled = false;
 
-    public Network(PrintWriter connection) {
+    public Sender(PrintWriter connection) {
         this.connection = connection;
     }
 

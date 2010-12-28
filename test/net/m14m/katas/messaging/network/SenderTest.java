@@ -12,23 +12,23 @@ import java.io.PrintWriter;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class NetworkTest {
+public class SenderTest {
     @Mock private Message message;
     @Mock private PrintWriter connection;
-    private Network network;
+    private Sender sender;
 
     @Before public void setUp() {
-        network = new Network(connection);
+        sender = new Sender(connection);
     }
 
     @Test public void sendEmailToSpecifiedAddressWithSpecifiedBody() {
-        network.sendMail(message);
+        sender.sendMail(message);
         verify(message).writeTo(connection);
     }
 
     @Test public void shouldNotSendIfNotifiedOfErrors() {
-        network.error(new ErrorMessage("Something's wrong."));
-        network.sendMail(message);
+        sender.error(new ErrorMessage("Something's wrong."));
+        sender.sendMail(message);
         verify(message, never()).writeTo(any(PrintWriter.class));
     }
 }
