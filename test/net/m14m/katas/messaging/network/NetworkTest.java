@@ -6,12 +6,13 @@ import org.junit.*;
 
 import java.io.StringWriter;
 
+import static net.m14m.katas.messaging.message.MessageFactory.createMessage;
 import static org.junit.Assert.*;
 
 public class NetworkTest {
     private static final Address ADDRESS = new Address("anita@example.com");
     private static final Body BODY = new Body("Greetings.");
-    private static final Message MESSAGE = new Message(new AddressList(ADDRESS), BODY);
+    private static final Message MESSAGE = createMessage(BODY, ADDRESS);
     private StringWriter output = new StringWriter();
     private Network network;
 

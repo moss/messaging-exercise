@@ -2,19 +2,13 @@ package net.m14m.katas.messaging.message;
 
 import net.m14m.katas.messaging.errors.ErrorListener;
 
-import java.util.List;
-
-import static java.util.Arrays.asList;
+import java.util.*;
 
 public class AddressList {
-    private final List<Address> addresses;
+    private final List<Address> addresses = new ArrayList<Address>();
 
-    public AddressList(Address... addresses) {
-        this.addresses = asList(addresses);
-    }
-
-    public AddressList(List<Address> addresses) {
-        this.addresses = addresses;
+    void addRecipient(Address address) {
+        addresses.add(address);
     }
 
     public void validate(ErrorListener listener) {

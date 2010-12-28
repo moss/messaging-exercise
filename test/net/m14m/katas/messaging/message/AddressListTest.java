@@ -17,7 +17,9 @@ public class AddressListTest {
     private AddressList addressList;
 
     @Before public void setUp() throws Exception {
-        addressList = new AddressList(address1, address2);
+        addressList = new AddressList();
+        addressList.addRecipient(address1);
+        addressList.addRecipient(address2);
     }
 
     @Test public void validatesAllAddresses() {
