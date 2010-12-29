@@ -16,8 +16,8 @@ public class Message {
         body.validate(listener);
     }
 
-    public String format(Formatter formatter) {
-        return formatter.format(addressList, body);
+    public String format(Format format) {
+        return format.format(addressList, body);
     }
 
     @Override

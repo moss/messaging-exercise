@@ -1,7 +1,6 @@
 package net.m14m.katas.messaging.network;
 
 import net.m14m.katas.messaging.errors.*;
-import net.m14m.katas.messaging.message.Message;
 
 import java.io.PrintWriter;
 
@@ -13,12 +12,9 @@ public class Sender implements ErrorListener {
         this.connection = connection;
     }
 
-    public void sendMail(Message message) {
+    public void sendMail(Envelope envelope) {
         if (disabled) return;
-        connection.println("connect smtp");
-        MailFormatter formatter = new MailFormatter();
-        connection.println(message.format(formatter));
-        connection.println("disconnect");
+        envelope.send(connection);
     }
 
     public void error(ErrorMessage message) {

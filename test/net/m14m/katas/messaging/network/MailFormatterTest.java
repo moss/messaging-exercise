@@ -12,10 +12,10 @@ import static org.junit.Assert.*;
 public class MailFormatterTest {
     @Mock private AddressList addressList;
     @Mock private Body body;
-    private MailFormatter formatter;
+    private MailFormat formatter;
 
     @Before public void setUp() {
-        formatter = new MailFormatter();
+        formatter = new MailFormat();
     }
 
     @Test public void sendEmailToSpecifiedAddressListWithSpecifiedBody() {

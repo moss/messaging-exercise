@@ -2,7 +2,7 @@ package net.m14m.katas.messaging.application;
 
 import net.m14m.katas.messaging.errors.*;
 import net.m14m.katas.messaging.message.*;
-import net.m14m.katas.messaging.network.Sender;
+import net.m14m.katas.messaging.network.*;
 
 import java.io.*;
 
@@ -23,6 +23,6 @@ public class Main {
         ErrorBroadcaster errorBroadcaster = new ErrorBroadcaster(errorReporter, sender);
         Message message = commandLine.parseMessage();
         message.validate(errorBroadcaster);
-        sender.sendMail(message);
+        sender.sendMail(new Envelope(message));
     }
 }

@@ -14,7 +14,7 @@ public class MessageTest {
     @Mock private ErrorListener listener;
     @Mock private AddressList addressList;
     @Mock private Body body;
-    @Mock private Formatter formatter;
+    @Mock private Format format;
     private Message message;
 
     @Before public void setUp() {
@@ -28,7 +28,7 @@ public class MessageTest {
     }
 
     @Test public void formatTheMessageUsingAFormatter() {
-        when(formatter.format(addressList, body)).thenReturn("Formatted Message");
-        assertEquals("Formatted Message", message.format(formatter));
+        when(format.format(addressList, body)).thenReturn("Formatted Message");
+        assertEquals("Formatted Message", message.format(format));
     }
 }

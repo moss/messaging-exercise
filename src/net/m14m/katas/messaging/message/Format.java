@@ -1,5 +1,5 @@
 package net.m14m.katas.messaging.message;
 
-public interface Formatter {
+public interface Format {
     String format(AddressList addressList, Body body);
 }

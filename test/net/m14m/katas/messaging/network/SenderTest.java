@@ -23,14 +23,14 @@ public class SenderTest {
     }
 
     @Test public void sendEmailToSpecifiedAddressWithSpecifiedBody() {
-        when(message.format(any(Formatter.class))).thenReturn("Formatted Message");
-        sender.sendMail(message);
+        when(message.format(any(Format.class))).thenReturn("Formatted Message");
+        sender.sendMail(new Envelope(message));
         assertEquals("connect smtp\nFormatted Message\ndisconnect\n", connection.toString());
     }
 
     @Test public void shouldNotSendIfNotifiedOfErrors() {
         sender.error(new ErrorMessage("Something's wrong."));
-        sender.sendMail(message);
+        sender.sendMail(new Envelope(message));
         assertEquals("", connection.toString());
     }
 }
