@@ -1,8 +1,8 @@
 package net.m14m.katas.messaging.application;
 
 import net.m14m.katas.messaging.errors.*;
-import net.m14m.katas.messaging.message.*;
-import net.m14m.katas.messaging.network.*;
+import net.m14m.katas.messaging.message.CommandLine;
+import net.m14m.katas.messaging.network.Sender;
 
 import java.io.*;
 
@@ -21,8 +21,6 @@ public class Main {
     public static void main(String... stringArguments) {
         CommandLine commandLine = new CommandLine(stringArguments);
         ErrorBroadcaster errorBroadcaster = new ErrorBroadcaster(errorReporter, sender);
-        Message message = commandLine.parseMessage();
-        message.validate(errorBroadcaster);
-        sender.sendMail(new Envelope(message));
+        new Application(sender, errorBroadcaster).execute(commandLine);
     }
 }
