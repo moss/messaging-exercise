@@ -1,7 +1,7 @@
 package net.m14m.katas.messaging.application;
 
 import net.m14m.katas.messaging.message.*;
-import net.m14m.katas.messaging.network.MailFormat;
+import net.m14m.katas.messaging.network.*;
 import org.junit.*;
 
 import static net.m14m.katas.messaging.message.MessageFactory.createMessage;
@@ -28,5 +28,16 @@ public class CommandLineTest {
     @Test public void defaultMessageFormatIsMail() {
         CommandLine commandLine = new CommandLine(ADDRESS, BODY);
         assertThat(commandLine.parseFormat(), instanceOf(MailFormat.class));
+    }
+
+    @Test public void initialSwitchToGetChatMessageInsteadOfMail() {
+        CommandLine commandLine = new CommandLine("-im", ADDRESS, BODY);
+        assertThat(commandLine.parseFormat(), instanceOf(ChatFormat.class));
+    }
+
+    @Test public void buildsChatMessageCorrectly() {
+        CommandLine commandLine = new CommandLine("-im", ADDRESS, BODY);
+        Message expectedMessage = createMessage(new Body(BODY), new Address(ADDRESS));
+        assertEquals(expectedMessage, commandLine.parseMessage());
     }
 }
