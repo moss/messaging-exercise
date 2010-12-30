@@ -16,6 +16,7 @@ public class Main {
 
     public static void main(String... args) {
         Address address = new Address(args[0]);
+        if (!address.isValid()) return;
         PrintWriter output = new PrintWriter(network);
         new Sender(output).send(address, args[1]);
     }
