@@ -21,6 +21,10 @@ public class Main {
         List<Address> addresses = commandLine.getAddresses();
         Body body = commandLine.getBody();
         Sender sender = commandLine.createSender(output);
-        new ValidatingSender(sender, new PrintWriter(console)).send(body, addresses);
+        PrintWriter consolePrinter = new PrintWriter(console);
+        new ValidatingSender(sender, consolePrinter).send(body, addresses);
+        if (output.checkError()) {
+            consolePrinter.println("Connection error. Please try again.");
+        }
     }
 }
