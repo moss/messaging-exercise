@@ -8,9 +8,9 @@ public class Envelope {
     private Message message;
     private Format format;
 
-    public Envelope(Message message) {
+    public Envelope(Message message, Format format) {
         this.message = message;
-        format = new MailFormat();
+        this.format = format;
     }
 
     public void send(PrintWriter connection) {

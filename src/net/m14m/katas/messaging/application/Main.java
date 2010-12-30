@@ -1,7 +1,6 @@
 package net.m14m.katas.messaging.application;
 
 import net.m14m.katas.messaging.errors.*;
-import net.m14m.katas.messaging.message.CommandLine;
 import net.m14m.katas.messaging.network.Sender;
 
 import java.io.*;

@@ -1,7 +1,7 @@
 package net.m14m.katas.messaging.application;
 
 import net.m14m.katas.messaging.errors.ErrorBroadcaster;
-import net.m14m.katas.messaging.message.*;
+import net.m14m.katas.messaging.message.Message;
 import net.m14m.katas.messaging.network.*;
 
 class Application {
@@ -16,6 +16,7 @@ class Application {
     public void execute(CommandLine commandLine) {
         Message message = commandLine.parseMessage();
         message.validate(errorBroadcaster);
-        sender.sendMail(new Envelope(message));
+        Envelope envelope = new Envelope(message, commandLine.parseFormat());
+        sender.sendMail(envelope);
     }
 }

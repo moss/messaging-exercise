@@ -1,4 +1,7 @@
-package net.m14m.katas.messaging.message;
+package net.m14m.katas.messaging.application;
+
+import net.m14m.katas.messaging.message.*;
+import net.m14m.katas.messaging.network.MailFormat;
 
 public class CommandLine {
     private String[] arguments;
@@ -18,5 +21,9 @@ public class CommandLine {
         for (String address : arguments[0].split(",")) {
             addressList.addRecipient(new Address(address));
         }
+    }
+
+    public Format parseFormat() {
+        return new MailFormat();
     }
 }

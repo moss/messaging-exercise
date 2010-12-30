@@ -7,7 +7,7 @@ import java.util.*;
 public class AddressList {
     private final List<Address> addresses = new ArrayList<Address>();
 
-    void addRecipient(Address address) {
+    public void addRecipient(Address address) {
         addresses.add(address);
     }
 

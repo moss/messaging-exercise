@@ -14,15 +14,16 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class EnvelopeTest {
     @Mock private Message message;
+    @Mock private Format format;
     private Writer connection = new StringWriter();
     private Envelope envelope;
 
     @Before public void setUp() throws Exception {
-        envelope = new Envelope(message);
+        envelope = new Envelope(message, format);
     }
 
     @Test public void formatsTheMessageAndSendsItThroughAConnection() {
-        when(message.format(any(Format.class))).thenReturn("Formatted Message");
+        when(message.format(format)).thenReturn("Formatted Message");
         envelope.send(new PrintWriter(connection));
         assertEquals("connect smtp\nFormatted Message\ndisconnect\n", connection.toString());
     }
