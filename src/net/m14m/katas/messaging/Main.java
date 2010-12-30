@@ -15,9 +15,10 @@ public class Main {
     }
 
     public static void main(String... args) {
-        Address address = new Address(args[0]);
-        if (!address.isValid()) return;
         PrintWriter output = new PrintWriter(network);
-        new Sender(output).send(address, args[1]);
+        Address address = new Address(args[0]);
+        Body body = new Body(args[1]);
+        Sender sender = new Sender(output);
+        new ValidatingSender(sender, new PrintWriter(console)).send(address, body);
     }
 }

@@ -9,7 +9,7 @@ class Sender {
         this.output = output;
     }
 
-    public void send(Address address, String body) {
+    public void send(Address address, Body body) {
         output.println("connect smtp");
         output.println("To: " + address);
         output.println();
