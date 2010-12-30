@@ -17,15 +17,15 @@ public class AddressList {
         }
     }
 
-    @Override public String toString() {
-        StringBuilder result = new StringBuilder();
-        addToHeaders(result);
-        return result.toString();
+    public String format(String format) {
+        Formatter formatter = new Formatter();
+        addToHeaders(formatter, format);
+        return formatter.toString();
     }
 
-    private void addToHeaders(StringBuilder result) {
+    private void addToHeaders(Formatter formatter, String format) {
         for (Address address : addresses) {
-            result.append("To: ").append(address).append("\n");
+            formatter.format(format, address);
         }
     }
 

@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MailFormatTest {
@@ -19,6 +20,7 @@ public class MailFormatTest {
     }
 
     @Test public void sendEmailToSpecifiedAddressListWithSpecifiedBody() {
-        assertEquals("addressList\nbody\n", formatter.format(addressList, body));
+        when(addressList.format("To: %s\n")).thenReturn("some addresses");
+        assertEquals("some addresses\nbody\n", formatter.format(addressList, body));
     }
 }

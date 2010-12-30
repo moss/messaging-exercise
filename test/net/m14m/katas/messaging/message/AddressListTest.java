@@ -28,7 +28,7 @@ public class AddressListTest {
         verify(address2).validate(listener);
     }
 
-    @Test public void includesToLinesForAllAddresses() {
-        assertEquals("To: address1\nTo: address2\n", addressList.toString());
+    @Test public void formatListOfAddresses() {
+        assertEquals("[address1][address2]", addressList.format("[%s]"));
     }
 }
