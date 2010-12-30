@@ -2,6 +2,8 @@ package net.m14m.katas.messaging;
 
 import java.io.PrintWriter;
 
+import static java.util.Arrays.asList;
+
 class ValidatingSender {
     private Sender sender;
     private final PrintWriter console;
@@ -20,6 +22,6 @@ class ValidatingSender {
             console.println("Cannot send an email with no body.");
             return;
         }
-        sender.send(address, body);
+        sender.send(asList(address), body);
     }
 }
