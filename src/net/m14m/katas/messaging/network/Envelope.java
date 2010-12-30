@@ -14,7 +14,7 @@ public class Envelope {
     }
 
     public void send(PrintWriter connection) {
-        connection.println("connect smtp");
+        connection.println("connect " + format);
         connection.println(message.format(format));
         connection.println("disconnect");
     }

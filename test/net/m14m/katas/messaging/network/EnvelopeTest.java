@@ -25,6 +25,6 @@ public class EnvelopeTest {
     @Test public void formatsTheMessageAndSendsItThroughAConnection() {
         when(message.format(format)).thenReturn("Formatted Message");
         envelope.send(new PrintWriter(connection));
-        assertEquals("connect smtp\nFormatted Message\ndisconnect\n", connection.toString());
+        assertEquals("connect format\nFormatted Message\ndisconnect\n", connection.toString());
     }
 }

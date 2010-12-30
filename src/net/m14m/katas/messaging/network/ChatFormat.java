@@ -11,4 +11,8 @@ public class ChatFormat implements Format {
         String text = body.toString();
         return text.replace(")", "\\)");
     }
+
+    @Override public String toString() {
+        return "chat";
+    }
 }
