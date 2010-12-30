@@ -17,9 +17,10 @@ public class Main {
 
     public static void main(String... args) {
         PrintWriter output = new PrintWriter(network);
-        List<Address> addresses = Address.listFrom(args[0]);
-        Body body = new Body(args[1]);
-        Sender sender = new Sender(output);
+        CommandLine commandLine = new CommandLine(args);
+        List<Address> addresses = commandLine.getAddresses();
+        Body body = commandLine.getBody();
+        Sender sender = commandLine.createSender(output);
         new ValidatingSender(sender, new PrintWriter(console)).send(body, addresses);
     }
 }

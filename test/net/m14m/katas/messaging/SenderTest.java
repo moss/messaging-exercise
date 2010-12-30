@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class SenderTest {
     private StringWriter output = new StringWriter();
-    private Sender sender = new Sender(new PrintWriter(output));
+    private Sender sender = new MailSender(new PrintWriter(output));
 
     @Test public void sendToMultipleAddresses() {
         sender.send(asList(new Address("a@example.com"), new Address("b@example.com")),

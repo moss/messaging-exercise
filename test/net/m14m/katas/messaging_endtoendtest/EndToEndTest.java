@@ -64,7 +64,7 @@ public class EndToEndTest {
         consoleShouldReceive(NO_OUTPUT);
     }
 
-    @Ignore @Test public void sendAMessageInAnotherFormat() {
+    @Test public void sendAMessageInAnotherFormat() {
         Main.main("-im", "leslie@chat.example.com", ":-) hey there!");
         networkShouldReceive("connect chat\n" +
                 "<leslie@chat.example.com>(:-\\) hey there!)\n" +
