@@ -10,4 +10,8 @@ public class Body {
     @Override public String toString() {
         return body;
     }
+
+    public boolean isEmpty() {
+        return body.isEmpty();
+    }
 }
