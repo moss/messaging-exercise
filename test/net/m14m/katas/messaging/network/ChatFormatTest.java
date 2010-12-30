@@ -25,4 +25,17 @@ public class ChatFormatTest {
         String result = format.format(addressList, new Body(")"));
         assertEquals("<paula@example.com>(\\))", result);
     }
+
+    @Test public void messageWithMultipleRecipientsGetsRepeatedForEachOne() {
+        addressList.addRecipient(new Address("paula@example.com"));
+        addressList.addRecipient(new Address("horace@example.com"));
+        String result = format.format(addressList, BODY);
+        assertEquals("<paula@example.com>(hello)\n<horace@example.com>(hello)", result);
+    }
+
+    @Test public void messageWithPercentSignsInTheBody() {
+        addressList.addRecipient(new Address("paula@example.com"));
+        String result = format.format(addressList, new Body("It's 10% better!"));
+        assertEquals("<paula@example.com>(It's 10% better!)", result);
+    }
 }

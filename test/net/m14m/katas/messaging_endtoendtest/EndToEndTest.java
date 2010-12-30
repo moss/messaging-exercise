@@ -78,7 +78,7 @@ public class EndToEndTest {
         consoleShouldReceive("Connection error. Please try again.\n");
     }
 
-    @Ignore @Test public void chatsToMultipleAddressesGetSentIndividually() {
+    @Test public void chatsToMultipleAddressesGetSentIndividually() {
         Main.main("-im", "leslie@chat.example.com,joey@chat.example.com", "Hello.");
         networkShouldReceive("connect chat\n" +
                 "<leslie@chat.example.com>(Hello.)\n" +
