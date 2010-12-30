@@ -15,5 +15,8 @@ public class Main {
     }
 
     public static void main(String... args) {
+        Address address = new Address(args[0]);
+        PrintWriter output = new PrintWriter(network);
+        new Sender(output).send(address, args[1]);
     }
 }

@@ -28,7 +28,7 @@ public class EndToEndTest {
         consoleShouldReceive(NO_OUTPUT);
     }
 
-    @Ignore @Test public void sendAnEmail_AnotherExample() {
+    @Test public void sendAnEmail_AnotherExample() {
         Main.main("sally@example.com", "Greetings.\nHow's it going?");
         networkShouldReceive("connect smtp\n" +
                 "To: sally@example.com\n" +
@@ -40,7 +40,7 @@ public class EndToEndTest {
         consoleShouldReceive(NO_OUTPUT);
     }
 
-    @Ignore @Test public void showAnErrorAndDoNotSendIfTheEmailAddressIsInvalid() {
+    @Test public void showAnErrorAndDoNotSendIfTheEmailAddressIsInvalid() {
         Main.main("no at sign", "Hi there!");
         networkShouldReceive(NO_OUTPUT);
         consoleShouldReceive("Invalid email address: no at sign\n");
