@@ -18,5 +18,6 @@ class Application {
         message.validate(errorBroadcaster);
         Envelope envelope = new Envelope(message, commandLine.parseFormat());
         sender.sendMail(envelope);
+        sender.validate(errorBroadcaster);
     }
 }

@@ -1,6 +1,6 @@
 package net.m14m.katas.messaging.network;
 
-import net.m14m.katas.messaging.errors.ErrorMessage;
+import net.m14m.katas.messaging.errors.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.mockito.Mock;
@@ -14,6 +14,7 @@ import static org.mockito.Mockito.*;
 public class SenderTest {
     @Mock private Envelope envelope;
     @Mock private PrintWriter connection;
+    @Mock private ErrorListener listener;
     private Sender sender;
 
     @Before public void setUp() {
@@ -29,5 +30,17 @@ public class SenderTest {
         sender.error(new ErrorMessage("Something's wrong."));
         sender.sendMail(envelope);
         verify(envelope, never()).send(any(PrintWriter.class));
+    }
+
+    @Test public void validatesConnectionProblems() {
+        when(connection.checkError()).thenReturn(true);
+        sender.validate(listener);
+        verify(listener).error(any(ErrorMessage.class));
+    }
+
+    @Test public void validIfThereAreNoConnectionProblems() {
+        when(connection.checkError()).thenReturn(false);
+        sender.validate(listener);
+        verify(listener, never()).error(any(ErrorMessage.class));
     }
 }

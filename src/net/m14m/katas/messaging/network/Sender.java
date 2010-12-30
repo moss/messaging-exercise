@@ -12,12 +12,18 @@ public class Sender implements ErrorListener {
         this.connection = connection;
     }
 
+    public void error(ErrorMessage message) {
+        disabled = true;
+    }
+
     public void sendMail(Envelope envelope) {
         if (disabled) return;
         envelope.send(connection);
     }
 
-    public void error(ErrorMessage message) {
-        disabled = true;
+    public void validate(ErrorListener listener) {
+        if (connection.checkError()) {
+            listener.error(new ErrorMessage("Connection error. Please try again."));
+        }
     }
 }
