@@ -5,6 +5,7 @@ import org.junit.*;
 
 import java.io.*;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 public class EndToEndTest {
@@ -88,11 +89,11 @@ public class EndToEndTest {
     }
 
     private void networkShouldReceive(String output) {
-        assertEquals(output, network.toString());
+        assertThat(network.toString(), equalTo(output));
     }
 
     private void consoleShouldReceive(String output) {
-        assertEquals(output, console.toString());
+        assertThat(console.toString(), equalTo(output));
     }
 
     private static class BadNetworkConnection extends Writer {
