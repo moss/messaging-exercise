@@ -19,4 +19,10 @@ public class ChatFormatTest {
         String result = format.format(addressList, BODY);
         assertEquals("<paula@example.com>(hello)", result);
     }
+
+    @Test public void escapesClosingParentheses() {
+        addressList.addRecipient(new Address("paula@example.com"));
+        String result = format.format(addressList, new Body(")"));
+        assertEquals("<paula@example.com>(\\))", result);
+    }
 }
