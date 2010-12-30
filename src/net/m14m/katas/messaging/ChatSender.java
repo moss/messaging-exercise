@@ -12,8 +12,14 @@ public class ChatSender implements Sender {
 
     public void send(List<Address> addresses, Body body) {
         output.println("connect chat");
-        output.println("<" + addresses.get(0) + ">(" + escapeParentheses(body) + ")");
+        for (Address address : addresses) {
+            sendMessage(address, body);
+        }
         output.println("disconnect");
+    }
+
+    private void sendMessage(Address address, Body body) {
+        output.println("<" + address + ">(" + escapeParentheses(body) + ")");
     }
 
     private String escapeParentheses(Body body) {
