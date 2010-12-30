@@ -1,8 +1,7 @@
 package net.m14m.katas.messaging;
 
 import java.io.PrintWriter;
-
-import static java.util.Arrays.asList;
+import java.util.List;
 
 class ValidatingSender {
     private Sender sender;
@@ -13,15 +12,17 @@ class ValidatingSender {
         this.console = console;
     }
 
-    public void send(Address address, Body body) {
-        if (!address.isValid()) {
-            console.println("Invalid email address: " + address);
-            return;
+    public void send(Body body, List<Address> addresses) {
+        for (Address address : addresses) {
+            if (!address.isValid()) {
+                console.println("Invalid email address: " + address);
+                return;
+            }
         }
         if (body.isEmpty()) {
             console.println("Cannot send an email with no body.");
             return;
         }
-        sender.send(asList(address), body);
+        sender.send(addresses, body);
     }
 }

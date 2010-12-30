@@ -24,18 +24,19 @@ public class ValidatingSenderTest {
     }
 
     @Test public void sendsIfEverythingIsValid() {
-        validatingSender.send(VALID_ADDRESS, VALID_BODY);
+        validatingSender.send(VALID_BODY, asList(VALID_ADDRESS));
         verify(sender).send(asList(VALID_ADDRESS), VALID_BODY);
     }
 
     @Test public void showsErrorAndDoesNotSendIfAddressInvalid() {
-        validatingSender.send(new Address("invalid"), VALID_BODY);
+        final Address invalid = new Address("invalid");
+        validatingSender.send(VALID_BODY, asList(invalid));
         verify(sender, never()).send(asList(any(Address.class)), any(Body.class));
         assertEquals("Invalid email address: invalid\n", output.toString());
     }
 
     @Test public void showsErrorAndDoesNotSendIfTheBodyIsInvalid() {
-        validatingSender.send(VALID_ADDRESS, new Body(""));
+        validatingSender.send(new Body(""), asList(VALID_ADDRESS));
         verify(sender, never()).send(asList(any(Address.class)), any(Body.class));
         assertEquals("Cannot send an email with no body.\n", output.toString());
     }
